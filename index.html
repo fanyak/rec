@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Polymer Starter Kit">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>My App</title>
+    <meta name="description" content="My App description">
+
+    </head>
+    <body>
+        <div>
+        <form name ="dims">
+            <label> Width: <input type='text' value="100" name='width'></label>
+            <label> Height: <input type='text' value="100" name='height'></label>
+        </form>   
+    </div>
+    <hr>
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Simple rectangle -->
+        <rect width="100" height="100" fill="yellow" />
+    </svg>
+
+    <script>
+        const width = document.forms[0].width;
+        const height = document.forms[0].height;
+           document.forms[0].height.addEventListener('input', console.log)
+       window.addEventListener('load', (evt)=> {
+           width.addEventListener('input', changeDimentions)
+           height.addEventListener('input', changeDimentions)
+       });
+
+       function  changeDimentions() {
+           const w = width.value;
+           const h = height.value;
+
+          const updateDims = function (w,h) {
+            const rect = document.querySelector('svg rect');
+            console.log(w,h)
+            rect.setAttribute('width', w);
+            rect.setAttribute('height', h);
+
+           }.bind(window, w, h);
+        
+            window.requestAnimationFrame(updateDims);
+        }
+    </script>
+    </body>
+   </html>
